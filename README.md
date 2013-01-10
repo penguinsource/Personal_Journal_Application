@@ -14,16 +14,19 @@ the 'places entry'/map is not working, try using the win32 version of the librar
 
 
 ============================
-Credit to:
 
 Mihai Oprescu
+============================
 email: mihaioprescu5@yahoo.com
 
 Mikus Lorence
+============================
 email: lorencs@ualberta.ca
 
 Fernando Lopez de la Mora
+============================
 email: lopezdel@ualberta.ca
 
 Haoran Wang
+============================
 email:haoran5@ualberta.ca
