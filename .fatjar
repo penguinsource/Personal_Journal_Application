@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Wed Jan 09 19:54:54 MST 2013
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=C\:\\Users\\mihai\\Desktop\\TaaaaaaaaaaaaeamHotelProject_fat.jar
+manifest.mergeall=true
+manifest.mainclass=controller.Main
+manifest.file=<createnew>
+jarname.isextern=true
+onejar.expand=
+excludes=
+includes=
