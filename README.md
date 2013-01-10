@@ -15,18 +15,7 @@ the 'places entry'/map is not working, try using the win32 version of the librar
 
 ============================
 
-Mihai Oprescu
-============================
-email: mihaioprescu5@yahoo.com
-
-Mikus Lorence
-============================
-email: lorencs@ualberta.ca
-
+Mihai Oprescu ( me / https://github.com/penguinsource )
+Mikus Lorence ( https://github.com/shade45 )
 Fernando Lopez de la Mora
-============================
-email: lopezdel@ualberta.ca
-
 Haoran Wang
-============================
-email:haoran5@ualberta.ca
