@@ -14,6 +14,7 @@ the 'places entry'/map is not working, try using the win32 version of the librar
 
 
 ============================
+Credit to:
 
 Mihai Oprescu
 email: mihaioprescu5@yahoo.com
