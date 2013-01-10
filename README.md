@@ -16,6 +16,9 @@ the 'places entry'/map is not working, try using the win32 version of the librar
 ============================
 
 Mihai Oprescu ( me / https://github.com/penguinsource )
+
 Mikus Lorence ( https://github.com/shade45 )
+
 Fernando Lopez de la Mora
+
 Haoran Wang
