@@ -13,3 +13,16 @@ WorldWind libraries (WorldWindLibs) are provided. In some cases, if you are usin
 the 'places entry'/map is not working, try using the win32 version of the libraries.
 
 
+============================
+
+Mihai Oprescu
+email: mihaioprescu5@yahoo.com
+
+Mikus Lorence
+email: lorencs@ualberta.ca
+
+Fernando Lopez de la Mora
+email: lopezdel@ualberta.ca
+
+Haoran Wang
+email:haoran5@ualberta.ca
