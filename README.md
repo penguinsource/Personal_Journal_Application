@@ -1,7 +1,7 @@
 Personal_Journal_Application
 ============================
 
-A java-based customizable journal application. Easy to use and fast to customize.
+A java-based compact and customizable journal application. Easy to use and fast to customize.
 
 Source Code Documentation is available in the Doc folder.
 
