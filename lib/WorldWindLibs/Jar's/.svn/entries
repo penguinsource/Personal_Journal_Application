@@ -1,0 +1,73 @@
+8
+
+dir
+590
+https://repos.cs.ualberta.ca/repos/c301g08/TeamHotelProject/lib/WorldWindLibs/Jar's
+https://repos.cs.ualberta.ca/repos/c301g08
+
+
+
+2011-11-06T18:14:52.115312Z
+247
+oprescu
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+9847b5eb-1652-4bf3-aa17-93357e2fa685
+
+32bits
+dir
+
+64bits
+dir
+
+gdal.jar
+file
+
+
+
+
+2011-11-26T20:47:54.213000Z
+f24df698b1db3d5a747fa360bf7ef4fe
+2011-11-06T18:14:52.115312Z
+247
+oprescu
+has-props
+
+worldwind.jar
+file
+
+
+
+
+2011-11-26T20:48:03.472000Z
+ef1fe6e5e7ecaac9dc759ff63cfe8b8e
+2011-11-06T18:14:52.115312Z
+247
+oprescu
+has-props
+
+worldwindx.jar
+file
+
+
+
+
+2011-11-26T20:48:12.484000Z
+bae00d4cca43e7cc6c2b6127e979cdbe
+2011-11-06T18:14:52.115312Z
+247
+oprescu
+has-props
+

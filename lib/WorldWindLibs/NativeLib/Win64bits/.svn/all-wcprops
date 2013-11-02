@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/c301g08/!svn/ver/247/TeamHotelProject/lib/WorldWindLibs/NativeLib/Win64bits
+END
+jogl_awt.dll
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/c301g08/!svn/ver/247/TeamHotelProject/lib/WorldWindLibs/NativeLib/Win64bits/jogl_awt.dll
+END
+jogl_cg.dll
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/c301g08/!svn/ver/247/TeamHotelProject/lib/WorldWindLibs/NativeLib/Win64bits/jogl_cg.dll
+END
+jogl.dll
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/repos/c301g08/!svn/ver/247/TeamHotelProject/lib/WorldWindLibs/NativeLib/Win64bits/jogl.dll
+END
+gluegen-rt.dll
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/c301g08/!svn/ver/247/TeamHotelProject/lib/WorldWindLibs/NativeLib/Win64bits/gluegen-rt.dll
+END

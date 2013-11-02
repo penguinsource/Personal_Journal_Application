@@ -1,0 +1,203 @@
+8
+
+dir
+590
+https://repos.cs.ualberta.ca/repos/c301g08/TeamHotelProject/doc
+https://repos.cs.ualberta.ca/repos/c301g08
+
+
+
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+9847b5eb-1652-4bf3-aa17-93357e2fa685
+
+allclasses-frame.html
+file
+
+
+
+
+2011-11-29T05:47:53.611000Z
+b8107748c8e448ab86b4a4a7b94bce2b
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+allclasses-noframe.html
+file
+
+
+
+
+2011-11-29T05:48:01.614000Z
+993ccf648928108ee7cf4de954d3a255
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+constant-values.html
+file
+
+
+
+
+2011-11-29T05:47:56.171000Z
+67069bf79b3cf9ae7cb4507ad7edc136
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+controller
+dir
+
+data
+dir
+
+deprecated-list.html
+file
+
+
+
+
+2011-11-29T05:48:01.594000Z
+3ab9bab89e4a9c7859a3e980e23df8e5
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+gui
+dir
+
+help-doc.html
+file
+
+
+
+
+2011-11-29T05:47:56.201000Z
+60fcd38b06724c52a74635da871548ce
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+imageflow
+dir
+
+index-files
+dir
+
+index.html
+file
+
+
+
+
+2011-11-29T05:48:00.174000Z
+c9dbea11f6b9a450cfcd73b0ae57bfd1
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+overview-frame.html
+file
+
+
+
+
+2011-11-29T05:47:56.231000Z
+0e1e218d6593610bc3a4b48acd767eb9
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+overview-summary.html
+file
+
+
+
+
+2011-11-29T05:47:56.241000Z
+2e74265a33f06a19a29e4e126d3b945b
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+overview-tree.html
+file
+
+
+
+
+2011-11-29T05:47:56.271000Z
+a1e821c788673da3ef4c02bd6ee9cebd
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+package-list
+file
+
+
+
+
+2011-11-29T05:47:56.261000Z
+d03f2f8c0713259172be7a66a820ce7d
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+
+resources
+dir
+
+serialized-form.html
+file
+
+
+
+
+2011-11-29T05:47:56.211000Z
+b0c9d2728d3ae460e7a53af5932e979f
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+has-props
+
+stylesheet.css
+file
+
+
+
+
+2011-11-29T05:47:53.601000Z
+6ea3088c740a86ddc743f62573f18a42
+2011-11-28T21:37:58.338461Z
+582
+lorencs
+
+testcode
+dir
+

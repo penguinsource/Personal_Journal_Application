@@ -1,0 +1,54 @@
+8
+
+dir
+590
+https://repos.cs.ualberta.ca/repos/c301g08/TeamHotelProject/lib/WorldWindLibs/Jar's/64bits
+https://repos.cs.ualberta.ca/repos/c301g08
+
+
+
+2011-11-06T18:14:52.115312Z
+247
+oprescu
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+9847b5eb-1652-4bf3-aa17-93357e2fa685
+
+gluegen-rt.jar
+file
+
+
+
+
+2011-11-26T20:48:05.502000Z
+44d5d11cfc275d4a78f8164004dbd717
+2011-11-06T18:14:52.115312Z
+247
+oprescu
+has-props
+
+jogl.jar
+file
+
+
+
+
+2011-11-26T20:48:06.922000Z
+d086484bb61e4c8d1e0e8c29bbd873f8
+2011-11-06T18:14:52.115312Z
+247
+oprescu
+has-props
+

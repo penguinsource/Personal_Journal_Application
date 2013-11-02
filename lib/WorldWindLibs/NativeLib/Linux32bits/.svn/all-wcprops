@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/c301g08/!svn/ver/252/TeamHotelProject/lib/WorldWindLibs/NativeLib/Linux32bits
+END
+libjogl_awt.so
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/repos/c301g08/!svn/ver/252/TeamHotelProject/lib/WorldWindLibs/NativeLib/Linux32bits/libjogl_awt.so
+END
+libgluegen-rt.so
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/c301g08/!svn/ver/252/TeamHotelProject/lib/WorldWindLibs/NativeLib/Linux32bits/libgluegen-rt.so
+END
+libjogl.so
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/c301g08/!svn/ver/252/TeamHotelProject/lib/WorldWindLibs/NativeLib/Linux32bits/libjogl.so
+END
+libjogl_cg.so
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/repos/c301g08/!svn/ver/252/TeamHotelProject/lib/WorldWindLibs/NativeLib/Linux32bits/libjogl_cg.so
+END

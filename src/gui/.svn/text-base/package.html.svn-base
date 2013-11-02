@@ -1,0 +1,7 @@
+<HTML>
+<BODY>
+Contains the classes that make up the graphical side of the application. This includes
+the main gui class titled (very originally) MainGUI, the journal manager, and classes used
+to display each type entry. It also contains other frames that are displayed throughout the application.
+</BODY>
+</HTML>
