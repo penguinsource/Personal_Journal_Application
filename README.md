@@ -5,8 +5,6 @@ A java-based compact and customizable journal application. Easy to use and fast 
 
 Source Code Documentation is available in the Doc folder.
 
-Will provide a small wiki soon.
-
 NOTE:
 
 WorldWind libraries (WorldWindLibs) are provided. In some cases, if you are using a 64-bit win version and
