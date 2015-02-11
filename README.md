@@ -22,4 +22,3 @@ Mikus Lorence ( https://github.com/shade45 )
 
 Fernando Lopez de la Mora
 
-Haoran Wang
