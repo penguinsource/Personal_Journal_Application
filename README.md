@@ -1,9 +1,9 @@
 Personal_Journal_Application
 ============================
 
-Only a Windows 64-bit demo is available but I'll make sure to upload linux and windows 32bit versions in the next 2 days
+Only a Windows 64-bit demo is available but I'll make sure to upp linux and windows 32bit versions in the next 2 days
 
-[Download Demo (Windows 64 bit) Application](https://github.com/penguinsource/Personal_Journal_Application/blob/master/demo/Demo(64bit).jar?raw=true)
++[Download Demo (Windows 64 bit) Application](https://github.com/penguinsource/Personal_Journal_Application/blob/master/demo/Demo(64bit).jar?raw=true)
 
 ============================
 
