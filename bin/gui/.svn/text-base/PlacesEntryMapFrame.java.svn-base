@@ -1,0 +1,367 @@
+
+package gui;
+
+import gov.nasa.worldwind.Model;
+import gov.nasa.worldwind.WorldWind;
+import gov.nasa.worldwind.avlist.AVKey;
+import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
+import gov.nasa.worldwind.event.PositionEvent;
+import gov.nasa.worldwind.event.PositionListener;
+import gov.nasa.worldwind.geom.Angle;
+import gov.nasa.worldwind.geom.Position;
+import gov.nasa.worldwind.layers.RenderableLayer;
+import gov.nasa.worldwind.render.Material;
+import gov.nasa.worldwind.render.Offset;
+import gov.nasa.worldwind.render.PointPlacemark;
+import gov.nasa.worldwind.render.PointPlacemarkAttributes;
+import gov.nasa.worldwind.util.WWUtil;
+import gov.nasa.worldwindx.examples.ApplicationTemplate;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.Serializable;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import controller.Controller;
+import data.LocationEntry;
+
+import java.util.Vector;
+
+import net.miginfocom.swing.MigLayout;
+
+/**
+ * This class is the GUI for the map that gets the coordinates of a user-set location. There are 3 indicators at the bottom, latitude, longitude and elevation. The coordinates are taken from the latitude and the longitude. The user selects a place on the map, then clicks ok to save it to the location entry. This will get the coordinates and save them to the panel of LocationEntryPanel
+ * @author  Mihai !
+ */
+public class PlacesEntryMapFrame extends ApplicationTemplate implements ActionListener, PositionListener, MouseListener, Serializable {
+
+	private static final long serialVersionUID = -9121822270985702897L;
+	private JFrame frame;
+
+	private WorldWindowGLCanvas worldWindCanvas;
+	/**
+	 */
+	private Controller control;
+	private JPanel mainPanel;
+	private JPanel topPanel;
+	private JPanel bottomPanel;
+	private JButton saveButton;
+	private JButton cancelButton;
+	private JLabel altitude_value;
+	private JLabel latitude_value;
+	private JLabel longitude_value;
+	private JLabel elevation_value;
+	private Position current_position;
+	private PointPlacemark placemark;
+	private RenderableLayer layer;
+	private PointPlacemarkAttributes placemark_attributes;
+	private boolean placemark_exists;
+	private String location_name;
+	
+	private String type;
+	
+	/**
+	 */
+	private PlaceFrame placesGUIref;
+	/**
+	 */
+	private LocationEntryPanel locationEntryPanelObject;
+	
+	public PlacesEntryMapFrame(String type_arg, String LocationName, 
+			PlaceFrame pgui, LocationEntryPanel locationPanelObj, Vector <LocationEntryPanel> listToDisplay, Controller control_arg){
+		
+		control = control_arg;
+		type = type_arg;
+		locationEntryPanelObject = locationPanelObj;
+		// get 
+		//type = type_arg;
+		// get reference into placesGUIref
+		placesGUIref = pgui;
+		
+		// 
+		location_name = LocationName;
+		// no placemark exists so init to false
+		placemark_exists = false;
+		
+		mainPanel = new JPanel(new MigLayout("", "0 [] 0", "0 [] 0"));
+		topPanel = new JPanel(new MigLayout("", "0 [] 0", "0 [] 0"));
+		bottomPanel = new JPanel(new MigLayout("", "[] [] [] [] [] [] push [] []"));
+		mainPanel.setBackground(new Color(0, 0, 0));
+		
+		frame = new JFrame("Map");
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		frame.setSize(new Dimension(800, 660));
+		
+        frame.addWindowListener(new WindowAdapter() {
+		      public void windowClosing(WindowEvent e) {
+		    	  frame.dispose();
+		    	  if (type.equals("view") || type.equals("new")){
+		    		  placesGUIref.enablePlacesGUI();
+		    	  }
+		    	  if (type.equals("viewAll")){
+		    		  control.removeActiveView("map");
+		    	  }
+		      }
+		}); 
+        
+        //create a WorldWind main object
+        worldWindCanvas = new WorldWindowGLCanvas();
+        Model m = (Model) WorldWind.createConfigurationComponent(
+                AVKey.MODEL_CLASS_NAME);
+        worldWindCanvas.setModel(m);
+        worldWindCanvas.setSize(800, 600);
+        
+        worldWindCanvas.addPositionListener(this);
+        worldWindCanvas.addMouseListener(this);
+        
+        
+        // initiate the layer that the placemarks are staying on
+        // initiate the attributes of the placemark
+        layer = new RenderableLayer();
+        placemark_attributes = new PointPlacemarkAttributes();
+        
+        saveButton = new JButton("Save");
+        saveButton.addActionListener(this);
+        saveButton.setActionCommand("saveButton");
+        
+        cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(this);
+        cancelButton.setActionCommand("cancelButton");
+        
+        bottomPanel.setOpaque(false);
+        saveButton.setOpaque(false);
+        
+        JLabel altitudeN = new JLabel("altitude: ");
+        JLabel latitudeN = new JLabel("latitude: ");
+        JLabel longitudeN = new JLabel("longitude: ");
+        JLabel elevationN = new JLabel("elevation: ");
+        altitudeN.setForeground(new Color(255, 255, 255));
+        latitudeN.setForeground(new Color(255, 255, 255));
+        longitudeN.setForeground(new Color(255, 255, 255));
+        elevationN.setForeground(new Color(255, 255, 255));
+        
+    	altitude_value = new JLabel("");
+    	latitude_value = new JLabel("");
+    	longitude_value = new JLabel("");
+    	elevation_value = new JLabel("");
+    	
+        altitude_value.setForeground(new Color(255, 255, 255));
+        latitude_value.setForeground(new Color(255, 255, 255));
+        longitude_value.setForeground(new Color(255, 255, 255));
+        elevation_value.setForeground(new Color(255, 0, 0));
+        
+        // add bottom labels to the bottomPanel
+        bottomPanel.add(latitudeN);
+        bottomPanel.add(latitude_value);
+        bottomPanel.add(longitudeN);
+        bottomPanel.add(longitude_value);
+        bottomPanel.add(elevationN);
+        bottomPanel.add(elevation_value);
+        // add bottom buttons save and cancel to the bottomPanel
+        bottomPanel.add(cancelButton, "push");
+        bottomPanel.add(saveButton, "gapright 5");
+       
+        // add the worldWindCanvas to the topPanel
+        topPanel.add(worldWindCanvas);
+        
+        // adding all panels to mainPanel and adding the mainPanel to the frame
+        mainPanel.add(topPanel, "dock north");
+        mainPanel.add(bottomPanel, "dock south");
+        frame.add(mainPanel);
+        
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        
+        
+		if (type.matches("new")){
+			placesGUIref.disablePlacesGUI();
+		}else if (type.matches("view")){
+			placesGUIref.disablePlacesGUI();
+        	cancelButton.setText("Close");
+        	bottomPanel.remove(saveButton);
+        	
+			for (int i = 0; i < listToDisplay.size(); i++){
+				listToDisplay.get(i).getName();
+				
+				Position placemark_position = listToDisplay.get(i).getPosition();
+				if (placemark_position == null){
+				}else{
+				
+				placemark = new PointPlacemark(listToDisplay.get(i).getPosition());				
+				placemark.setLabelText(listToDisplay.get(i).getLocationName());
+				placemark.setValue(AVKey.DISPLAY_NAME, "Absolute, Label, Red pin icon, Line in random color and 2 wide");
+				placemark.setLineEnabled(true);
+				placemark.setAltitudeMode(WorldWind.ABSOLUTE);
+				placemark_attributes = new PointPlacemarkAttributes();
+				placemark_attributes.setScale(0.6);
+				placemark_attributes.setImageOffset(new Offset(19d, 8d, AVKey.PIXELS, AVKey.PIXELS));
+	        	placemark_attributes.setLabelOffset(new Offset(0.9d, 0.6d, AVKey.FRACTION, AVKey.FRACTION));
+	        	placemark_attributes.setLineMaterial(new Material(WWUtil.makeRandomColor(null)));
+	        	placemark_attributes.setLineWidth(2d);
+	        	placemark_attributes.setImageAddress("images/pushpins/plain-red.png");
+	        	placemark.setAttributes(placemark_attributes);
+	        	layer.addRenderable(placemark);
+	        	
+				}
+			}
+        	insertBeforeCompass(worldWindCanvas, layer);
+
+		}else if (type.matches("viewAll")){
+			cancelButton.setText("Close");
+			bottomPanel.remove(saveButton);
+			
+			Vector<LocationEntry> allLocations = control.getAllLocations();
+			
+			for (int i = 0; i < allLocations.size(); i++){
+				
+				// create the Position object of each location
+				Angle latitude =  Angle.fromDegrees(allLocations.get(i).getLatitude());
+				Angle longitude =  Angle.fromDegrees(allLocations.get(i).getLongitude());
+				Double elevation = allLocations.get(i).getElevation();
+				
+				Position position = new Position(latitude, longitude, elevation);
+							
+				placemark = new PointPlacemark(position);				
+				placemark.setLabelText(allLocations.get(i).getLocationName());
+				placemark.setValue(AVKey.DISPLAY_NAME, "Absolute, Label, Red pin icon, Line in random color and 2 wide");
+				placemark.setLineEnabled(true);
+				placemark.setAltitudeMode(WorldWind.ABSOLUTE);
+				placemark_attributes = new PointPlacemarkAttributes();
+				placemark_attributes.setScale(0.6);
+				placemark_attributes.setImageOffset(new Offset(19d, 8d, AVKey.PIXELS, AVKey.PIXELS));
+	        	placemark_attributes.setLabelOffset(new Offset(0.9d, 0.6d, AVKey.FRACTION, AVKey.FRACTION));
+	        	placemark_attributes.setLineMaterial(new Material(WWUtil.makeRandomColor(null)));
+	        	placemark_attributes.setLineWidth(2d);
+	        	placemark_attributes.setImageAddress("images/pushpins/plain-red.png");
+	        	placemark.setAttributes(placemark_attributes);
+	        	layer.addRenderable(placemark);
+	        	
+				//}
+			}
+        	insertBeforeCompass(worldWindCanvas, layer);
+		}
+		
+	}
+	
+	public void setPlacemarks(){
+		
+	}
+
+	@Override
+	public void moved(PositionEvent arg0) {
+
+		if (arg0.getPosition() == null){
+		}else{
+		current_position = arg0.getPosition();
+		Double altitudeD = current_position.getAltitude();
+		Angle latitudeD = current_position.getLatitude();
+		Angle longitudeD = current_position.getLongitude();
+		Double elevationD = current_position.getElevation();
+		
+		String altitudeS = String.format("%.1f", altitudeD);
+		String latitudeS = String.format("%.1f", latitudeD.getDegrees());
+		String longitudeS = String.format("%.1f", longitudeD.getDegrees());
+		String elevationS = String.format("%.1f", elevationD);
+		
+		altitude_value.setText(altitudeS);
+		latitude_value.setText(latitudeS);
+		longitude_value.setText(longitudeS);
+		elevation_value.setText(elevationS);
+		
+		
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if ("cancelButton".matches(e.getActionCommand())){
+			if (placesGUIref != null){
+				placesGUIref.enablePlacesGUI();
+			}
+			if (type.equals("viewAll"))
+	    		  control.removeActiveView("map");
+			frame.dispose();
+		}else if ("saveButton".matches(e.getActionCommand())){
+	
+			if (placemark_exists){
+				String latitude = String.format("%.1f", placemark.getPosition().getLatitude().getDegrees());
+				String longitude = String.format("%.1f", placemark.getPosition().getLongitude().getDegrees());
+				
+				locationEntryPanelObject.setCoords(latitude, longitude);
+				locationEntryPanelObject.setPosition(placemark.getPosition());
+			}else{
+			}
+			placesGUIref.enablePlacesGUI();
+			frame.dispose();
+		}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		if (type.matches("new")){
+			
+			if (placemark_exists){
+				layer.removeAllRenderables();
+				placemark_exists = false;
+			}
+			if (current_position != null){
+				
+			
+			placemark = new PointPlacemark(current_position);
+		
+			placemark.setLabelText(location_name);
+			placemark.setValue(AVKey.DISPLAY_NAME, "Absolute, Label, Red pin icon, Line in random color and 2 wide");
+			placemark.setLineEnabled(true);
+			placemark.setAltitudeMode(WorldWind.ABSOLUTE);
+			placemark_attributes = new PointPlacemarkAttributes();
+			placemark_attributes.setScale(0.6);
+			placemark_attributes.setImageOffset(new Offset(19d, 8d, AVKey.PIXELS, AVKey.PIXELS));
+        	placemark_attributes.setLabelOffset(new Offset(0.9d, 0.6d, AVKey.FRACTION, AVKey.FRACTION));
+        	placemark_attributes.setLineMaterial(new Material(WWUtil.makeRandomColor(null)));
+        	placemark_attributes.setLineWidth(2d);
+        	placemark_attributes.setImageAddress("images/pushpins/plain-red.png");
+        	placemark.setAttributes(placemark_attributes);
+        	layer.addRenderable(placemark);
+        
+        	placemark_exists = true;
+        	insertBeforeCompass(worldWindCanvas, layer);
+			}
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+	
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		
+	}
+	public JFrame getFrame() {
+		return frame;
+	}
+	
+}

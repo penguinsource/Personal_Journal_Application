@@ -8,6 +8,7 @@ import java.awt.FontMetrics;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +18,6 @@ import javax.swing.ToolTipManager;
 import javax.swing.border.LineBorder;
 
 import controller.Controller;
-
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -69,33 +69,33 @@ public class EntryPanel extends JPanel{
 		JLabel icon = new JLabel();
 		if (type.equals("diary")){
 			if (reminder){
-				icon.setIcon(new ImageIcon("images/Book-grey.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/Book-grey.png")));
 			} else {
-				icon.setIcon(new ImageIcon("images/Book.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/Book.png")));
 			}
 		} else if (type.equals("image")){
 			if (reminder){
-				icon.setIcon(new ImageIcon("images/picture-grey.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/picture-grey.png")));
 			} else {
-				icon.setIcon(new ImageIcon("images/picture.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/picture.png")));
 			}
 		} else if (type.equals("topic")){
 			if (reminder){
-				icon.setIcon(new ImageIcon("images/topic-grey.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/topic-grey.png")));
 			} else {
-				icon.setIcon(new ImageIcon("images/topic.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/topic.png")));
 			}
 		} else if (type.equals("place")){
 			if (reminder){
-				icon.setIcon(new ImageIcon("images/Map-grey.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/Map-grey.png")));
 			} else {
-				icon.setIcon(new ImageIcon("images/Map.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/Map.png")));
 			}
 		} else if (type.equals("mood")){
 			if (reminder){
-				icon.setIcon(new ImageIcon("images/smiley-entry-grey.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/smiley-entry-grey.png")));
 			} else {
-				icon.setIcon(new ImageIcon("images/emoticons/emote" + (Integer.parseInt(title) - 1) + "-entry.png"));
+				icon.setIcon(new ImageIcon(getResourceURL("/images/emoticons/emote" + (Integer.parseInt(title) - 1) + "-entry.png")));
 			}
 		}
 		
@@ -209,15 +209,15 @@ public class EntryPanel extends JPanel{
 		//add the necessary buttons
 		if (!reminder){
 			tweet = new JButton();
-			tweet.setIcon(new ImageIcon("images/Twitter_48.png")); 
+			tweet.setIcon(new ImageIcon(getResourceURL("/images/Twitter_48.png"))); 
 			tweet.setMaximumSize(new Dimension (23,23));
 			tweet.setToolTipText("Tweet entry");
 			viewEdit = new JButton();
-			viewEdit.setIcon(new ImageIcon("images/Pencil_14.png")); 
+			viewEdit.setIcon(new ImageIcon(getResourceURL("/images/Pencil_14.png"))); 
 			viewEdit.setMaximumSize(new Dimension (23,23));
 			viewEdit.setToolTipText("View or edit entry");
 			delete = new JButton();
-			delete.setIcon(new ImageIcon("images/Close-small.png")); 
+			delete.setIcon(new ImageIcon(getResourceURL("/images/Close-small.png"))); 
 			delete.setMaximumSize(new Dimension (23,23));
 			delete.setToolTipText("Delete entry");
 			
@@ -226,13 +226,13 @@ public class EntryPanel extends JPanel{
 			this.add(delete);
 		} else {
 			addEntry = new JButton();
-			addEntry.setIcon(new ImageIcon("images/bullet_add-grey.png")); 
-			addEntry.setRolloverIcon(new ImageIcon("images/bullet_add.png"));
+			addEntry.setIcon(new ImageIcon(getResourceURL("/images/bullet_add-grey.png"))); 
+			addEntry.setRolloverIcon(new ImageIcon(getResourceURL("/images/bullet_add.png")));
 			addEntry.setMaximumSize(new Dimension (23,23));
 			addEntry.setToolTipText("Create entry");
 			dismissRem = new JButton();
-			dismissRem.setIcon(new ImageIcon("images/Close-small-grey.png")); 
-			dismissRem.setRolloverIcon(new ImageIcon("images/Close-small.png"));
+			dismissRem.setIcon(new ImageIcon(getResourceURL("/images/Close-small-grey.png"))); 
+			dismissRem.setRolloverIcon(new ImageIcon(getResourceURL("/images/Close-small.png")));
 			dismissRem.setMaximumSize(new Dimension (23,23));
 			dismissRem.setToolTipText("Dismiss reminder");
 			this.add(addEntry);
@@ -302,6 +302,10 @@ public class EntryPanel extends JPanel{
 		}
 	}
 
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
+	
 	/**
 	 * Returns the title of the panel after it has been set
 	 */

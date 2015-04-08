@@ -9,9 +9,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import java.io.File;
-
+import java.net.URL;
 import java.util.Vector;
 import java.util.Date;
 
@@ -26,7 +25,6 @@ import javax.swing.JSeparator;
 
 import controller.Controller;
 import controller.EditCommand;
-
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -89,7 +87,7 @@ public class ImageFrame extends JFrame implements ActionListener{
 		undoButton = new JButton("Undo");
 		redoButton = new JButton("Redo");
 		helpButton = new JButton("Help");
-		helpButton.setIcon(new ImageIcon("images/help4.png"));
+		helpButton.setIcon(new ImageIcon(getResourceURL("/images/help4.png")));
 		panel = new JPanel(new MigLayout("insets 0 0 0 0"));
 		imagePanel = new JPanel(new MigLayout("insets 0 0 0 0"));
 		fileList = new Vector<String>();
@@ -124,7 +122,7 @@ public class ImageFrame extends JFrame implements ActionListener{
 		submitButton.addActionListener(this);
 		submitButton.setActionCommand("submit");
 		submitButton.setEnabled(false);
-		ImageIcon icon = new ImageIcon("images/Plus-32.png");
+		ImageIcon icon = new ImageIcon(getResourceURL("/images/Plus-32.png"));
 		Image img =  icon.getImage(); 
 		Image newimg = img.getScaledInstance(18, 18,  java.awt.Image.SCALE_SMOOTH);  
 		submitButton.setIcon(new ImageIcon(newimg));
@@ -132,14 +130,14 @@ public class ImageFrame extends JFrame implements ActionListener{
 		
 		browseButton.addActionListener(this);
 		browseButton.setActionCommand("upload");
-		icon = new ImageIcon("images/Glass-32.png");
+		icon = new ImageIcon(getResourceURL("/images/Glass-32.png"));
 		img =  icon.getImage(); 
 		newimg = img.getScaledInstance(18, 18,  java.awt.Image.SCALE_SMOOTH);
 		browseButton.setIcon(new ImageIcon(newimg)); 
 		browseButton.setToolTipText("Search your folders to select images");
 		
 		deleteButton.setEnabled(false);
-		icon = new ImageIcon("images/Close-32.png");
+		icon = new ImageIcon(getResourceURL("/images/Close-32.png"));
 		img =  icon.getImage(); 
 		newimg = img.getScaledInstance(18, 18,  java.awt.Image.SCALE_SMOOTH);
 		deleteButton.setIcon(new ImageIcon(newimg)); 
@@ -149,7 +147,7 @@ public class ImageFrame extends JFrame implements ActionListener{
 		
 		exitButton.addActionListener(this);
 		exitButton.setActionCommand("exit");
-		icon = new ImageIcon("images/Cancel-32.png");
+		icon = new ImageIcon(getResourceURL("/images/Cancel-32.png"));
 		img =  icon.getImage(); 
 		newimg = img.getScaledInstance(18, 18,  java.awt.Image.SCALE_SMOOTH);
 		exitButton.setIcon(new ImageIcon(newimg)); 
@@ -157,7 +155,7 @@ public class ImageFrame extends JFrame implements ActionListener{
 		
 		zoomButton.addActionListener(this);
 		zoomButton.setActionCommand("zoom");
-		icon = new ImageIcon("images/Gnome-Zoom-Fit-Best-32.png");
+		icon = new ImageIcon(getResourceURL("/images/Gnome-Zoom-Fit-Best-32.png"));
 		img =  icon.getImage(); 
 		newimg = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
 		zoomButton.setIcon(new ImageIcon(newimg)); 
@@ -165,12 +163,12 @@ public class ImageFrame extends JFrame implements ActionListener{
 		undoButton.addActionListener(this);
 		undoButton.setActionCommand("undo");
 		undoButton.setToolTipText("Undo the last change made in this window");
-		undoButton.setIcon(new ImageIcon("images/undo2png"));
+		undoButton.setIcon(new ImageIcon(getResourceURL("/images/undo2png")));
 		
 		redoButton.addActionListener(this);
 		redoButton.setActionCommand("redo");
 		redoButton.setToolTipText("Revert any change made by the Undo button");
-		redoButton.setIcon(new ImageIcon("images/redo2.png"));
+		redoButton.setIcon(new ImageIcon(getResourceURL("/images/redo2.png")));
 		
 		helpButton.addActionListener(this);
 		helpButton.setActionCommand("help");
@@ -262,7 +260,7 @@ public class ImageFrame extends JFrame implements ActionListener{
 		this.date = date;
 		fileList.clear();
 
-		if(imageList.elementAt(0).equals("images/noImage.png")) {
+		if(imageList.elementAt(0).equals(getResourceURL("/images/noImage.png"))) {
 			noImagesFound = true;
 			noImages = true;
 		}
@@ -274,7 +272,7 @@ public class ImageFrame extends JFrame implements ActionListener{
 		
 		for(int i = 0; i < imageList.size(); i++) {
 			name = imageList.elementAt(i);
-			if(!name.equals("images/noImage.png"))
+			if(!name.equals(getResourceURL("/images/noImage.png")))
 				fileList.add(imageList.elementAt(i));
 
 			helperList.add(new ImageFlowItem(name, name)); 
@@ -344,7 +342,7 @@ public class ImageFrame extends JFrame implements ActionListener{
 				controller.addEdit(file.getAbsolutePath(), date, "insert", helperList.size() - 1);				
 				
 				for(int i = 0; i < helperList.size(); i++) {
-					if(helperList.elementAt(i).getLabel().equals("images/noImage.png")) {
+					if(helperList.elementAt(i).getLabel().equals(getResourceURL("/images/noImage.png"))) {
 						helperList.removeElementAt(i);
 					}
 				}
@@ -426,6 +424,10 @@ public class ImageFrame extends JFrame implements ActionListener{
 			}
 		}
 	}
+	
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
 	
 	/**
 	 * 

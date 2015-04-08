@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.Controller;
-
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -82,13 +82,13 @@ public class LocationEntryPanel extends JPanel implements ActionListener, MouseL
 		
 		// getMapButton is enabled (as it is just init)
 		getMapButton = new JButton();
-		getMapButton.setIcon(new ImageIcon("images/mapimages/mapicon2.png",""));
+		getMapButton.setIcon(new ImageIcon(getResourceURL("/images/mapimages/mapicon2.png"),""));
 		getMapButton.addActionListener(this);
 		getMapButton.setActionCommand("getLocationMap");
 		getMapButton.setMaximumSize(new Dimension(28, 26));
 	
 		saveButton = new JButton();
-		saveButton.setIcon(new ImageIcon("images/mapimages/tick.png",""));
+		saveButton.setIcon(new ImageIcon(getResourceURL("/images/mapimages/tick.png"),""));
 		saveButton.addActionListener(this);
 		saveButton.setActionCommand("saveButton");
 		saveButton.setEnabled(true);
@@ -96,14 +96,14 @@ public class LocationEntryPanel extends JPanel implements ActionListener, MouseL
 
 		
 		deleteButton = new JButton();
-		deleteButton.setIcon(new ImageIcon("images/mapimages/deleteicon2.png",""));
+		deleteButton.setIcon(new ImageIcon(getResourceURL("/images/mapimages/deleteicon2.png"),""));
 		deleteButton.addActionListener(this);
 		deleteButton.setActionCommand("deleteButton");
 		deleteButton.setMaximumSize(new Dimension(28, 26));
 		
 		editButton = new JButton();
 		editButton.setEnabled(false);
-		editButton.setIcon(new ImageIcon("images/mapimages/Pencil_14.png",""));
+		editButton.setIcon(new ImageIcon(getResourceURL("/images/mapimages/Pencil_14.png"),""));
 		editButton.addActionListener(this);
 		editButton.setActionCommand("editButton");
 		editButton.setMaximumSize(new Dimension(28, 26));
@@ -136,6 +136,10 @@ public class LocationEntryPanel extends JPanel implements ActionListener, MouseL
 		}
 		
 	}
+	
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
 	
 	public String getLocationName(){
 		if (LocationNameField != null){

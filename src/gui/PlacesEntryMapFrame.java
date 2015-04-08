@@ -26,6 +26,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.Serializable;
+import java.net.URL;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -79,6 +80,8 @@ public class PlacesEntryMapFrame extends ApplicationTemplate implements ActionLi
 	
 	public PlacesEntryMapFrame(String type_arg, String LocationName, 
 			PlaceFrame pgui, LocationEntryPanel locationPanelObj, Vector <LocationEntryPanel> listToDisplay, Controller control_arg){
+		
+		System.out.println("DOES IT EVER GET HERE ??????????");
 		
 		control = control_arg;
 		type = type_arg;
@@ -254,6 +257,10 @@ public class PlacesEntryMapFrame extends ApplicationTemplate implements ActionLi
 		
 	}
 	
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
+	
 	public void setPlacemarks(){
 		
 	}
@@ -331,7 +338,7 @@ public class PlacesEntryMapFrame extends ApplicationTemplate implements ActionLi
         	placemark_attributes.setLabelOffset(new Offset(0.9d, 0.6d, AVKey.FRACTION, AVKey.FRACTION));
         	placemark_attributes.setLineMaterial(new Material(WWUtil.makeRandomColor(null)));
         	placemark_attributes.setLineWidth(2d);
-        	placemark_attributes.setImageAddress("images/pushpins/plain-red.png");
+        	placemark_attributes.setImageAddress("/images/pushpins/plain-red.png");
         	placemark.setAttributes(placemark_attributes);
         	layer.addRenderable(placemark);
         

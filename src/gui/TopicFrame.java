@@ -2,16 +2,18 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.URL;
 import java.util.Date;
 import java.util.Vector;
+
 
 
 import javax.swing.*;
 import javax.swing.undo.UndoManager;
 
 
-import net.miginfocom.swing.MigLayout;
 
+import net.miginfocom.swing.MigLayout;
 import controller.Controller;
 import data.TopicEntry;
 
@@ -89,12 +91,12 @@ public class TopicFrame extends JFrame implements ActionListener{
 		field.setEnabled(true);
 		//field.setPreferredSize(new Dimension(300,80));
 		submit = new JButton("Submit");
-		submit.setIcon(new ImageIcon("images/bullet_add.png"));
+		submit.setIcon(new ImageIcon(getResourceURL("/images/bullet_add.png")));
 		submit.addActionListener(this);
 		submit.setActionCommand("submit");
 		
 		cancel = new JButton("Cancel");
-		cancel.setIcon(new ImageIcon("images/bullet-delete.png"));
+		cancel.setIcon(new ImageIcon(getResourceURL("/images/bullet-delete.png")));
 		cancel.addActionListener(this);
 		cancel.setActionCommand("cancel");
 		
@@ -104,23 +106,23 @@ public class TopicFrame extends JFrame implements ActionListener{
 		edit.setActionCommand("edit");
 		
 		addButton = new JButton("");
-		addButton.setIcon(new ImageIcon("images/bullet_add.png"));
+		addButton.setIcon(new ImageIcon(getResourceURL("/images/bullet_add.png")));
 		addButton.addActionListener(this);
 		addButton.setActionCommand("addTopic");
 		
 		
 		help = new JButton("");
-		help.setIcon(new ImageIcon("images/help4.png"));
+		help.setIcon(new ImageIcon(getResourceURL("/images/help4.png")));
 		help.addActionListener(this);
 		help.setActionCommand("help");
 		help.setToolTipText("Help");
 		
 		JLabel separator = new JLabel();
-		separator.setIcon(new ImageIcon("images/separator3.PNG"));
+		separator.setIcon(new ImageIcon(getResourceURL("/images/separator3.PNG")));
 		separator.setMaximumSize(new Dimension(315, 10));
 		
 		JLabel separator2 = new JLabel();
-		separator2.setIcon(new ImageIcon("images/separator3.PNG"));
+		separator2.setIcon(new ImageIcon(getResourceURL("/images/separator3.PNG")));
 		separator2.setMaximumSize(new Dimension(315, 10));
 		String kind = "";
 		if (type_arg.matches("new")){
@@ -169,10 +171,10 @@ public class TopicFrame extends JFrame implements ActionListener{
 		
 		JToolBar toolbar = new JToolBar();
 					undo = new JButton(UndoManagerHelper.getUndoAction(manager));
-			undo.setIcon(new ImageIcon("images/undo2png"));
+			undo.setIcon(new ImageIcon(getResourceURL("/images/undo2png")));
 			toolbar.add(undo);
 					redo = new JButton(UndoManagerHelper.getRedoAction(manager));
-			redo.setIcon(new ImageIcon("images/redo2.png"));
+			redo.setIcon(new ImageIcon(getResourceURL("/images/redo2.png")));
 			toolbar.add(redo);
 			
 		    
@@ -215,6 +217,10 @@ public class TopicFrame extends JFrame implements ActionListener{
     	
 	}
 
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
+	
    public void loadEntries(){
 	    topic_entry = control.getTopicEntry(control.getCurrentDate());
 	    

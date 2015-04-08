@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URL;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -21,7 +22,6 @@ import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
 import controller.Controller;
-
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -66,7 +66,7 @@ public class TopicEntryPanel extends JPanel implements ActionListener, MouseList
 		deleteButton = new JButton();
 		deleteButton.setEnabled(false);
 		//deleteFromPanelButton.setIcon(new ImageIcon("images/bullet-delete.png",""));
-		deleteButton.setIcon(new ImageIcon("images/mapimages/deleteicon2.png",""));
+		deleteButton.setIcon(new ImageIcon(getResourceURL("/images/mapimages/deleteicon2.png"),""));
 		deleteButton.addActionListener(this);
 		deleteButton.setActionCommand("deleteButton");
 		deleteButton.setMaximumSize(new Dimension(28, 26));
@@ -79,6 +79,11 @@ public class TopicEntryPanel extends JPanel implements ActionListener, MouseList
 		
 		
 	}
+	
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
+    
 	public void newManager(){
 		manager = new UndoManager();
 		

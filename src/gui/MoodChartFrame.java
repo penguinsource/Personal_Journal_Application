@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GradientPaint;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URL;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -104,7 +105,7 @@ public class MoodChartFrame extends JFrame {
         
         // row keys...
     	JButton button = new JButton();
-    	button.setIcon(new ImageIcon("images/emoticons/emote0.png","Angry"));
+    	button.setIcon(new ImageIcon(getResourceURL("/images/emoticons/emote0.png"),"Angry"));
         final String series1 = "Excited";
         final String series2 = "Happy";
         final String series3 = "Meh";
@@ -132,6 +133,10 @@ public class MoodChartFrame extends JFrame {
         
         return dataset;
         
+    }
+    
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
     }
     
     /**

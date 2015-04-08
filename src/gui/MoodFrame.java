@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URL;
 import java.util.Date;
 
 import javax.swing.ImageIcon;
@@ -15,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import net.miginfocom.swing.MigLayout;
-
 import controller.Controller;
 
 /**
@@ -71,37 +71,37 @@ public class MoodFrame implements ActionListener {
         //mainPanel.
         emote0.addActionListener(this);
         emote0.setActionCommand("moodOneButton");
-        emote0.setIcon(new ImageIcon("images/emoticons/emote0.png","Angry"));
+        emote0.setIcon(new ImageIcon(getResourceURL("/images/emoticons/emote0.png"),"Angry"));
         emote0.setMaximumSize(new Dimension(30,30));
         //mainPanel.add(confused);
 
         emote1.addActionListener(this);
         emote1.setActionCommand("moodTwoButton");
-        emote1.setIcon(new ImageIcon("images/emoticons/emote1.png","Crying"));
+        emote1.setIcon(new ImageIcon(getResourceURL("/images/emoticons/emote1.png"),"Crying"));
         emote1.setMaximumSize(new Dimension(30,30));
         //mainPanel.add(angry);
         
         emote2.addActionListener(this);
         emote2.setActionCommand("moodThreeButton");
-        emote2.setIcon(new ImageIcon("images/emoticons/emote2.png","Sad"));
+        emote2.setIcon(new ImageIcon(getResourceURL("/images/emoticons/emote2.png"),"Sad"));
         emote2.setMaximumSize(new Dimension(30,30));
         //mainPanel.add(mischievous);
                 
         emote3.addActionListener(this);
         emote3.setActionCommand("moodFourButton");
-        emote3.setIcon(new ImageIcon("images/emoticons/emote3.png","Emotionless"));
+        emote3.setIcon(new ImageIcon(getResourceURL("/images/emoticons/emote3.png"),"Emotionless"));
         emote3.setMaximumSize(new Dimension(30,30));
         //mainPanel.add(star);
         
         emote4.addActionListener(this);
         emote4.setActionCommand("moodFiveButton");
-        emote4.setIcon(new ImageIcon("images/emoticons/emote4.png","Happy"));
+        emote4.setIcon(new ImageIcon(getResourceURL("/images/emoticons/emote4.png"),"Happy"));
         emote4.setMaximumSize(new Dimension(30,30));
         //mainPanel.add(love);
         
         emote5.addActionListener(this);
         emote5.setActionCommand("moodSixButton");
-        emote5.setIcon(new ImageIcon("images/emoticons/emote5.png","Super Happy"));
+        emote5.setIcon(new ImageIcon(getResourceURL("/images/emoticons/emote5.png"),"Super Happy"));
         emote5.setMaximumSize(new Dimension(30,30));
         //mainPanel.add(love2);        
         
@@ -177,5 +177,9 @@ public class MoodFrame implements ActionListener {
 	public void disposeFrame() {
 		frame.dispose();
 	}
+	
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
 	
 }

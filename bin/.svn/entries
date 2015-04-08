@@ -2,14 +2,14 @@
 
 dir
 590
-https://repos.cs.ualberta.ca/repos/c301g08/TeamHotelProject/bin
+https://repos.cs.ualberta.ca/repos/c301g08/TeamHotelProject/src
 https://repos.cs.ualberta.ca/repos/c301g08
 
 
 
-2011-10-29T05:44:17.817109Z
-119
-oprescu
+2011-11-29T02:58:17.671566Z
+590
+haoran5
 
 
 svn:special svn:externals svn:needs-lock
@@ -25,4 +25,19 @@ svn:special svn:externals svn:needs-lock
 
 
 9847b5eb-1652-4bf3-aa17-93357e2fa685
+
+controller
+dir
+
+data
+dir
+
+gui
+dir
+
+imageflow
+dir
+
+testcode
+dir
 

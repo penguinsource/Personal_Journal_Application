@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,7 +36,6 @@ import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
 import controller.Controller;
-
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -166,7 +166,9 @@ public class DiaryFrame implements ActionListener{
         topPanel.add(title);
 
         // add the logo label
-        ImageIcon icon = new ImageIcon("images/logo.png","");
+        ImageIcon icon = new ImageIcon(getResourceURL("/images/logo.png"),"");
+        
+        
         Image img =  icon.getImage(); 
 		Image newimg = img.getScaledInstance(40,40,  java.awt.Image.SCALE_SMOOTH);  
 		icon = new ImageIcon(newimg);
@@ -198,19 +200,19 @@ public class DiaryFrame implements ActionListener{
         bottomPanel.add(scrollBodyContent, "span");
                 
         //bottom part of bodyPanel (separator and buttons)
-        ImageIcon sepIcon = new ImageIcon("images/separator.PNG","");
+        ImageIcon sepIcon = new ImageIcon(getResourceURL("/images/separator.PNG"));
         JLabel separator = new JLabel("");
         separator.setIcon(sepIcon);
         bottomPanel.add(separator, "span, wrap");
         
         SubmitButton = new JButton(SubmitButtonLabel);
-        SubmitButton.setIcon(new ImageIcon("images/bullet_add.png"));
+        SubmitButton.setIcon(new ImageIcon(getResourceURL("/images/bullet_add.png")));
         SubmitButton.addActionListener(this);
         SubmitButton.setActionCommand(SubmitButtonAC);
         bottomPanel.add(SubmitButton);
         
         CancelButton = new JButton(CancelButtonLabel);
-        CancelButton.setIcon(new ImageIcon("images/bullet-delete.png"));
+        CancelButton.setIcon(new ImageIcon(getResourceURL("/images/bullet-delete.png")));
         CancelButton.addActionListener(this);
         CancelButton.setActionCommand(CancelButtonAC);
         bottomPanel.add(CancelButton);
@@ -218,7 +220,7 @@ public class DiaryFrame implements ActionListener{
         JButton helpBtn = new JButton();
         helpBtn.setToolTipText("Help");
         helpBtn.setMaximumSize(new Dimension(30,30));
-        helpBtn.setIcon(new ImageIcon("images/help4.png"));
+        helpBtn.setIcon(new ImageIcon(getResourceURL("/images/help4.png")));
         helpBtn.setActionCommand("help");
         helpBtn.addActionListener(this);
         bottomPanel.add(helpBtn);
@@ -226,7 +228,7 @@ public class DiaryFrame implements ActionListener{
         // all other declarations for the ClearButton have been made
         // earlier in this file
         ClearButton.addActionListener(this);
-        ClearButton.setIcon(new ImageIcon("images/clear.png"));
+        ClearButton.setIcon(new ImageIcon(getResourceURL("/images/clear.png")));
         
         undoManager = new UndoManager();
          
@@ -262,6 +264,10 @@ public class DiaryFrame implements ActionListener{
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }     
+    
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
     
     public void viewEmptyEntry(){
     	bodyContent.setBackground(new Color(245,245,245));

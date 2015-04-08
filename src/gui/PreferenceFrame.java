@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +29,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import controller.Controller;
-
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -283,7 +283,7 @@ public class PreferenceFrame implements ActionListener{
 		JButton helpBtn = new JButton();
         helpBtn.setToolTipText("Help");
         helpBtn.setMaximumSize(new Dimension(27,27));
-        helpBtn.setIcon(new ImageIcon("images/help4.png"));
+        helpBtn.setIcon(new ImageIcon(getResourceURL("/images/help4.png")));
         helpBtn.setActionCommand("order help");	
         helpBtn.addActionListener(this);
 		
@@ -356,7 +356,7 @@ public class PreferenceFrame implements ActionListener{
 			JButton helpBtn2 = new JButton();
 	        helpBtn2.setToolTipText("Help");
 	        helpBtn2.setMaximumSize(new Dimension(27,27));
-	        helpBtn2.setIcon(new ImageIcon("images/help4.png"));
+	        helpBtn2.setIcon(new ImageIcon(getResourceURL("/images/help4.png")));
 	        helpBtn2.setActionCommand("twitter help");	
 	        helpBtn2.addActionListener(this);
 			
@@ -430,7 +430,7 @@ public class PreferenceFrame implements ActionListener{
 		JButton helpBtn3 = new JButton();
         helpBtn3.setToolTipText("Help");
         helpBtn3.setMaximumSize(new Dimension(27,27));
-        helpBtn3.setIcon(new ImageIcon("images/help4.png"));
+        helpBtn3.setIcon(new ImageIcon(getResourceURL("/images/help4.png")));
         helpBtn3.setActionCommand("label help");	
         helpBtn3.addActionListener(this);
 		
@@ -472,6 +472,10 @@ public class PreferenceFrame implements ActionListener{
 		frame.requestFocus();
 		frame.toFront();
 	}
+	
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
 	
 	/**
 	 * Produces an array list of strings from the data in the lists in order to 

@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.Serializable;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -23,8 +24,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import net.miginfocom.swing.MigLayout;
 
+import net.miginfocom.swing.MigLayout;
 import controller.Controller;
 import controller.PlaceUndoRedo;
 import data.LocationEntry;
@@ -141,29 +142,29 @@ public class PlaceFrame implements ActionListener, Serializable {
         CoordLabel.setMinimumSize(new Dimension(77, 10));
         
 		separator = new JLabel();
-		separator.setIcon(new ImageIcon("images/separator3.PNG"));
+		separator.setIcon(new ImageIcon(getResourceURL("/images/separator3.PNG")));
 		
 		separator2 = new JLabel();
-		separator2.setIcon(new ImageIcon("images/separator3.PNG"));
+		separator2.setIcon(new ImageIcon(getResourceURL("/images/separator3.PNG")));
 		
 		separator3 = new JLabel();
-		separator3.setIcon(new ImageIcon("images/separatorStart.PNG"));
+		separator3.setIcon(new ImageIcon(getResourceURL("/images/separatorStart.PNG")));
 				
 		addLocationButton = new JButton("Add Location");
 		addLocationButton.addActionListener(this);
 		addLocationButton.setActionCommand("addLocationButton");
-		addLocationButton.setIcon(new ImageIcon("images/bullet_add.png"));
+		addLocationButton.setIcon(new ImageIcon(getResourceURL("/images/bullet_add.png")));
 		
 		
 		viewLocationsButton = new JButton("View Locations on Map");
 		viewLocationsButton.addActionListener(this);
 		viewLocationsButton.setActionCommand("viewLocationsButton");
-		viewLocationsButton.setIcon(new ImageIcon("images/bullet-go.png"));
+		viewLocationsButton.setIcon(new ImageIcon(getResourceURL("/images/bullet-go.png")));
 		
 		JButton addCoordsButton = new JButton("");
 		addCoordsButton.addActionListener(this);
 		addCoordsButton.setActionCommand("ExtendAndGetCoords");
-		addCoordsButton.setIcon(new ImageIcon("images/bullet-go.png"));
+		addCoordsButton.setIcon(new ImageIcon(getResourceURL("/images/bullet-go.png")));
 
 		okButton = new JButton("Ok");
 		okButton.addActionListener(this);
@@ -176,8 +177,8 @@ public class PlaceFrame implements ActionListener, Serializable {
 		undoButton = new JButton();
 		undoButton.setActionCommand("undo");
 		undoButton.addActionListener(this);
-		undoButton.setIcon(new ImageIcon("images/Undo-icon.png"));
-		ImageIcon icon = new ImageIcon("images/Undo-icon.png");
+		undoButton.setIcon(new ImageIcon(getResourceURL("/images/Undo-icon.png")));
+		ImageIcon icon = new ImageIcon(getResourceURL("/images/Undo-icon.png"));
 		Image img =  icon.getImage(); 
 		Image newimg = img.getScaledInstance(12, 12,  java.awt.Image.SCALE_SMOOTH);  
 		undoButton.setIcon(new ImageIcon(newimg));
@@ -185,7 +186,7 @@ public class PlaceFrame implements ActionListener, Serializable {
 		redoButton = new JButton();
 		redoButton.setActionCommand("redo");
 		redoButton.addActionListener(this);		
-		ImageIcon icon2 = new ImageIcon("images/Redo-icon.png");
+		ImageIcon icon2 = new ImageIcon(getResourceURL("/images/Redo-icon.png"));
 		Image img2 =  icon2.getImage(); 
 		Image newimg2 = img2.getScaledInstance(12, 12,  java.awt.Image.SCALE_SMOOTH);  
 		redoButton.setIcon(new ImageIcon(newimg2));
@@ -195,7 +196,7 @@ public class PlaceFrame implements ActionListener, Serializable {
         JButton helpBtn = new JButton();
         helpBtn.setToolTipText("Help");
         helpBtn.setMaximumSize(new Dimension(30,30));
-        helpBtn.setIcon(new ImageIcon("images/help4.png"));
+        helpBtn.setIcon(new ImageIcon(getResourceURL("/images/help4.png")));
         helpBtn.setActionCommand("help");
         helpBtn.addActionListener(this);
 		
@@ -231,6 +232,10 @@ public class PlaceFrame implements ActionListener, Serializable {
     	addLocationButton.setEnabled(true);
     	this.enableAllEdits();
     	this.enableAllDeletes();
+    }
+    
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
     }
     
     public void resetPanel(){
@@ -447,7 +452,10 @@ public class PlaceFrame implements ActionListener, Serializable {
 		}else if ("viewLocationsButton".matches(e.getActionCommand())){    		
 			listOfSavedEntries = getListLocationSavedPanels();
 			if (map == null){
+				System.out.println("OPEN WINDOW DUDE");
 				map = new PlacesEntryMapFrame("view", LocationNameField.getText(), this, null, listOfSavedEntries, control);
+				System.out.println("the map is:");
+				System.out.println(map);
 			}
 
 		}else if ("okButton".matches(e.getActionCommand())){

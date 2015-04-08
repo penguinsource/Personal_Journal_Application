@@ -13,9 +13,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
+import java.net.URL;
 import java.text.SimpleDateFormat;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -26,7 +25,9 @@ import javax.swing.event.DocumentListener;
 import javax.swing.JOptionPane;
 
 
+
 import net.miginfocom.swing.MigLayout;
+
 import com.toedter.calendar.JCalendar;
 
 import controller.Controller;
@@ -83,12 +84,12 @@ public class MainGUI{
 	private static MessageFrame helpFrame;
 	
 	//loads emoticons which are later applied to the mood entry button
-	ImageIcon mood_one = new ImageIcon("images/emoticons/emote0.png","Angry");
-	ImageIcon mood_two = new ImageIcon("images/emoticons/emote1.png","Crying");
-	ImageIcon mood_three = new ImageIcon("images/emoticons/emote2.png","Sad");
-	ImageIcon mood_four = new ImageIcon("images/emoticons/emote3.png","Emotionless");
-	ImageIcon mood_five = new ImageIcon("images/emoticons/emote4.png","Happy");
-	ImageIcon mood_six = new ImageIcon("images/emoticons/emote5.png","Super Happy");	
+	ImageIcon mood_one = new ImageIcon(getResourceURL("/images/emoticons/emote0.png"),"Angry");
+	ImageIcon mood_two = new ImageIcon(getResourceURL("/images/emoticons/emote1.png"),"Crying");
+	ImageIcon mood_three = new ImageIcon(getResourceURL("/images/emoticons/emote2.png"),"Sad");
+	ImageIcon mood_four = new ImageIcon(getResourceURL("/images/emoticons/emote3.png"),"Emotionless");
+	ImageIcon mood_five = new ImageIcon(getResourceURL("/images/emoticons/emote4.png"),"Happy");
+	ImageIcon mood_six = new ImageIcon(getResourceURL("/images/emoticons/emote5.png"),"Super Happy");	
 	
 	/**
 	 * Initially only loads the month view.
@@ -122,6 +123,10 @@ public class MainGUI{
 		frame.setLocationRelativeTo(null);
 	}
 	
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
+	
 	/**
 	 * Instantiates a frame that prompts the user to enter the PIN provided from the authentication page
 	 * @param type 
@@ -133,11 +138,11 @@ public class MainGUI{
 	/**
 	 * Loads the months view
 	 */
-	public static void addMonthView(){
+	public void addMonthView(){
 		JPanel panel = new JPanel(new MigLayout("","5[]3[]push[]3[]3[]5","6 [] 6 [] 10 [] -8"));
 		
 		prefsBtn = new JButton();
-		prefsBtn.setIcon(new ImageIcon("images/Settings-32.png")); 
+		prefsBtn.setIcon(new ImageIcon(getResourceURL("/images/Settings-32.png"))); 
 		prefsBtn.setToolTipText("Preferences");
 		prefsBtn.setMaximumSize(new Dimension(40,40));
 		prefsBtn.setSelected(false);
@@ -151,7 +156,7 @@ public class MainGUI{
 		});
 		
 		journalBtn = new JButton(); 
-		journalBtn.setIcon(new ImageIcon("images/manager2.png")); 
+		journalBtn.setIcon(new ImageIcon(getResourceURL("/images/manager2.png"))); 
 		journalBtn.setToolTipText("<html>Journal Manager<br>Click to close all open windows and<br>go to the Journal selection screen</html>");
 		journalBtn.setMaximumSize(new Dimension(40,40));
 		journalBtn.setSelected(false);
@@ -168,7 +173,7 @@ public class MainGUI{
 		});
 		
 		moodChartBtn = new JButton();
-		moodChartBtn.setIcon(new ImageIcon("images/AwesomeFace_icon.png")); 
+		moodChartBtn.setIcon(new ImageIcon(getResourceURL("/images/AwesomeFace_icon.png"))); 
 		moodChartBtn.setToolTipText("<html>" + control.getMoodLabel() + " Chart<br>Chart that plots the " + control.getMoodLabel() + " entries</html>");
 		moodChartBtn.setMaximumSize(new Dimension(40,40));
 		moodChartBtn.setSelected(false);
@@ -179,7 +184,7 @@ public class MainGUI{
 		});
 		
 		tagCloudBtn = new JButton();
-		tagCloudBtn.setIcon(new ImageIcon("images/mobile_me.png")); 
+		tagCloudBtn.setIcon(new ImageIcon(getResourceURL("/images/mobile_me.png"))); 
 		tagCloudBtn.setMaximumSize(new Dimension(40,40));
 		tagCloudBtn.setToolTipText("<html>Tag Cloud<br>Visual representation of the words in the " + control.getTopicLabel() + " entries</html>");
 		tagCloudBtn.addActionListener(new ActionListener(){
@@ -189,7 +194,7 @@ public class MainGUI{
 		});
 		
 		locationsBtn = new JButton();
-		locationsBtn.setIcon(new ImageIcon("images/Google-Map-32.png")); 
+		locationsBtn.setIcon(new ImageIcon(getResourceURL("/images/Google-Map-32.png"))); 
 		locationsBtn.setToolTipText("<html>" + control.getPlaceLabel() + " Map<br>Map of all the locations in the " + control.getPlaceLabel() + " entires </html>");
 		locationsBtn.setMaximumSize(new Dimension(40,40));
 		locationsBtn.addActionListener(new ActionListener(){
@@ -246,7 +251,7 @@ public class MainGUI{
         helpBtn = new JButton();
         helpBtn.setToolTipText("Help");
         helpBtn.setMaximumSize(new Dimension(27,25));
-        helpBtn.setIcon(new ImageIcon("images/help4.png"));
+        helpBtn.setIcon(new ImageIcon(getResourceURL("/images/help4.png")));
         helpBtn.setActionCommand("month");
         helpBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -312,7 +317,7 @@ public class MainGUI{
 		});
         
         slideBtn = new JButton();
-        slideBtn.setIcon(new ImageIcon("images/right_arrow.png")); 
+        slideBtn.setIcon(new ImageIcon(getResourceURL("/images/right_arrow.png"))); 
         slideBtn.setActionCommand("slide right");
         slideBtn.setToolTipText("Expand the day view to the right");
         slideBtn.setMaximumSize(new Dimension(27,25));
@@ -362,7 +367,7 @@ public class MainGUI{
 	 * Adds a (horizontal or vertical) day view (after the frame has been resized)
 	 * @param type Specifies horizontal or vertical positioning. 0 for horizontal, 1 for vertical.
 	 */
-	private static void addDayView(int typeArg) {
+	private void addDayView(int typeArg) {
 		type = typeArg;
 		control.setOrientation(type);
 		helpBtn.setActionCommand("day");
@@ -371,12 +376,12 @@ public class MainGUI{
 			mainPanel = new JPanel(new MigLayout("", "0 [] 0 [] 0 [] 0", "5 [] 5 [] 5 [] 5 [] 0"));
 			slideBtn.setActionCommand("slide left");
 	        slideBtn.setToolTipText("Slide the day view in to the left");
-			slideBtn.setIcon(new ImageIcon("images/left_arrow.png"));
+			slideBtn.setIcon(new ImageIcon(getResourceURL("/images/left_arrow.png")));
 		} else if (type == 1){
 			mainPanel = new JPanel(new MigLayout("", "6 [] 0 [] 0 [] 0", "2 [] 5 [] 5 [] 5 [] 0"));
 			slideBtn.setActionCommand("slide up");
 	        slideBtn.setToolTipText("Slide the day view up");
-			slideBtn.setIcon(new ImageIcon("images/up_arrow.png"));
+			slideBtn.setIcon(new ImageIcon(getResourceURL("/images/up_arrow.png")));
 		}
 		
 		dayPanel = new JPanel(new MigLayout("", "5 [] 5", "5 [] 5 [] 5 [] 5 [] 5 [] 0"));
@@ -389,7 +394,7 @@ public class MainGUI{
 		}
 		
 		final JButton newEntryBtn = new JButton("New Entry");
-		newEntryBtn.setIcon(new ImageIcon("images/bullet_add.png"));
+		newEntryBtn.setIcon(new ImageIcon(getResourceURL("/images/bullet_add.png")));
 		newEntryBtn.setText("New Entry");
         newEntryBtn.setToolTipText("Click to select a type of entry to create");
 		newEntryBtn.setHorizontalAlignment(SwingConstants.LEADING);
@@ -454,7 +459,7 @@ public class MainGUI{
         
         //undo button
         undoBtn = new JButton();
-        undoBtn.setIcon(new ImageIcon("images/undo2png"));
+        undoBtn.setIcon(new ImageIcon(getResourceURL("/images/undo2png")));
         undoBtn.setToolTipText("Undo");
         undoBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -464,7 +469,7 @@ public class MainGUI{
         
         //redo button
         redoBtn = new JButton();
-        redoBtn.setIcon(new ImageIcon("images/redo2.png"));
+        redoBtn.setIcon(new ImageIcon(getResourceURL("/images/redo2.png")));
         redoBtn.setToolTipText("Redo");
         redoBtn.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -547,7 +552,7 @@ public class MainGUI{
 		//search button
 		JButton searchButton = new JButton();
 		searchButton.setMaximumSize(new Dimension(27,25));
-		searchButton.setIcon(new ImageIcon("images/search3.png"));
+		searchButton.setIcon(new ImageIcon(getResourceURL("/images/search3.png")));
 		searchButton.setToolTipText("<html>Search all entries for the entered text<br>" +
 				"If no results are found in the current month,<br>calendar will change " +
 				"to a day with results<br>Clear the field to un-highlight the results on the calendar</html>");
@@ -573,7 +578,7 @@ public class MainGUI{
 		        
 		//orientation button
 		JButton orientBtn = new JButton();
-		orientBtn.setIcon(new ImageIcon("images/1319343746_stock_rotate.png")); 
+		orientBtn.setIcon(new ImageIcon(getResourceURL("/images/1319343746_stock_rotate.png"))); 
 		orientBtn.setToolTipText("Switch the position of the day view (horizontal/vertical)");
 		orientBtn.setMaximumSize(new Dimension(27,25));
 		orientBtn.addActionListener(new ActionListener(){
@@ -625,7 +630,7 @@ public class MainGUI{
 	/**
 	 * Resizes the frame to fit the horizontal day view, and adds the day view panel
 	 */
-	private static void slideDay() {
+	private void slideDay() {
 		int i = 279;
 	    
 	    while(i < 572){
@@ -642,7 +647,7 @@ public class MainGUI{
 	 * removes the horizontal day panel
 	 * @param panel the panel to remove from the frame
 	 */
-	private static void slideIn() {		
+	private void slideIn() {		
 		int i = 572;
         
         while(i > 286){
@@ -651,7 +656,7 @@ public class MainGUI{
         }
         
         frame.remove(mainPanel);
-        slideBtn.setIcon(new ImageIcon("images/right_arrow.png"));
+        slideBtn.setIcon(new ImageIcon(getResourceURL("/images/right_arrow.png")));
         slideBtn.setActionCommand("slide right");
         slideBtn.setToolTipText("Expand the day view to the right");
         helpBtn.setActionCommand("month");
@@ -663,7 +668,7 @@ public class MainGUI{
 	 * the vertical day panel
 	 * @param panel panel to remove from the frame
 	 */
-	protected static void slideUp() {		
+	protected void slideUp() {		
 		int i = 560;
         
         while (i > 310){
@@ -673,7 +678,7 @@ public class MainGUI{
         frame.setSize(new Dimension(284,310));
         frame.remove(mainPanel);    
         slideBtn.setActionCommand("slide down");
-        slideBtn.setIcon(new ImageIcon("images/down_arrow.png"));
+        slideBtn.setIcon(new ImageIcon(getResourceURL("/images/down_arrow.png")));
         slideBtn.setToolTipText("Expand the day view below the calendar");
         helpBtn.setActionCommand("month");
         frame.repaint();
@@ -682,7 +687,7 @@ public class MainGUI{
 	/**
 	 * Resizes the main frame downwards to fit the day view
 	 */
-	protected static void slideDown() {		
+	protected void slideDown() {		
 		int i = 310;
         
         while (i < 583){
@@ -700,7 +705,7 @@ public class MainGUI{
 	/**
 	 * Resizes the frame from horizontal layout to vertical, and reloads the vertical panel
 	 */
-	private static void horizToVert() {	
+	private void horizToVert() {	
 		int x = 572;
 		int y = 310;
 	    
@@ -721,7 +726,7 @@ public class MainGUI{
 	/**
 	 * Resizes the frame from vertical layout to horizontal, and reloads the horizontal panel
 	 */
-	protected static void vertToHoriz() {
+	protected void vertToHoriz() {
 		int x = 286;
 		int y = 583;
         

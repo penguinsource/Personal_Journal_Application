@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,7 +34,6 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import net.miginfocom.swing.MigLayout;
-
 import controller.Controller;
 import data.Journal;
 import gui.MainGUI;
@@ -77,7 +77,7 @@ public class JournalSelectFrame {
 		scroll.setPreferredSize(new Dimension(200,150));
 
 		newJournal = new JButton("New Journal");		
-		newJournal.setIcon(new ImageIcon("images/bullet_add.png"));
+		newJournal.setIcon(new ImageIcon(getResourceURL("/images/bullet_add.png")));
 		newJournal.setHorizontalAlignment(SwingConstants.LEADING);
 		newJournal.setIconTextGap(4);
 		newJournal.setToolTipText("Create a new Journal");
@@ -92,7 +92,7 @@ public class JournalSelectFrame {
 
 		
 		selectJournal = new JButton("Select Journal");
-		selectJournal.setIcon(new ImageIcon("images/bullet-go.png"));
+		selectJournal.setIcon(new ImageIcon(getResourceURL("/images/bullet-go.png")));
 		selectJournal.setHorizontalAlignment(SwingConstants.LEADING);
 		selectJournal.setIconTextGap(4);
 		selectJournal.setToolTipText("Load the selected Journal");
@@ -114,7 +114,7 @@ public class JournalSelectFrame {
 		});
 		
 		deleteJournal = new JButton("Delete Journal");
-		deleteJournal.setIcon(new ImageIcon("images/bullet-delete.png"));
+		deleteJournal.setIcon(new ImageIcon(getResourceURL("/images/bullet-delete.png")));
 		deleteJournal.setHorizontalAlignment(SwingConstants.LEADING);
 		deleteJournal.setIconTextGap(4);
 		deleteJournal.setToolTipText("Delete the selected Journal");
@@ -148,6 +148,10 @@ public class JournalSelectFrame {
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 	}
+	
+    public URL getResourceURL(String path){
+    	return this.getClass().getResource(path);
+    }
 	
 	/**
 	 * Save the journal configuration (essentially a file that contains the names of all existing journals)
